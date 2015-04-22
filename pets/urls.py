@@ -1,11 +1,12 @@
 from django.conf.urls import url, include
-from django.contrib import admin
 from rest_framework import routers
-from .api import AnimalList
+import api
+import views
 
 router = routers.DefaultRouter()
-router.register(r'animal', AnimalList)
+router.register(r'animal', api.AnimalList)
 
 urlpatterns = [
+    url(r'^', views.Home.as_view(), name='home'),
     url(r'^api/', include(router.urls)),
 ]
