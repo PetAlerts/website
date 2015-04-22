@@ -38,10 +38,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Extra Django apps
+    'django.contrib.humanize',
     # Third party
     'rest_framework',
     # Project
-    'pets'
+    'alerts'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,7 +82,10 @@ WSGI_APPLICATION = 'petalerts.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config()
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db',
+    }
 }
 
 
