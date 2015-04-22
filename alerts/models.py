@@ -1,6 +1,7 @@
 import string
 from django.db import models
 from django.utils.translation import ugettext as _
+from nominatim import NominatimReverse
 
 
 class Alert(models.Model):
@@ -26,9 +27,9 @@ class Alert(models.Model):
         (AGE_CUB, _('Cub/Young')),
         (AGE_ADULT, _('Adult')))
 
-    type = models.CharField(choices=TYPE_CHOICES, max_length=1)
+    species = models.CharField(choices=TYPE_CHOICES, max_length=1)
     genre = models.CharField(choices=GENRE_CHOICES, max_length=1, default=UNKNOWN)
-    age = models.CharField(choices=AGE_CHOICES, max_length=1, default=UNKNOWN)
+    age = models.CharField(choices=AGE_CHOICES, max_length=1, default=AGE_ADULT)
     immediate_danger = models.BooleanField(default=False, verbose_name=_('In immediate danger'))
     picture = models.ImageField()
     date = models.DateTimeField(auto_now_add=True)
@@ -37,4 +38,9 @@ class Alert(models.Model):
     details = models.CharField(max_length=500, verbose_name=_('Other details'), null=True, blank=True)
 
     def __unicode__(self):
-        return string.join([self.get_age_display(), self.get_type_display()])
+        return string.join([self.get_age_display(), self.get_species_display()])
+
+    def get_address(self):
+        nomrev = NominatimReverse()
+        result = nomrev.query(lat=self.lat, lon=self.lng)
+        return result.get('display_name')

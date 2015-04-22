@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     # Third party
     'rest_framework',
+    'autofixture',
     # Project
     'alerts'
 )
@@ -82,12 +83,8 @@ WSGI_APPLICATION = 'petalerts.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db',
-    }
+    'default': dj_database_url.config()
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

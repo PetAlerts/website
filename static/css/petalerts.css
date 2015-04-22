@@ -1,0 +1,12 @@
+#portfolio-information.padding-top, .padding-top {
+    padding-top: 20px;
+}
+.alert strong {
+    word-spacing: 3px;
+}
+#footer {
+    background-image: none;
+}
+.copyright-text {
+    color: black;
+}
