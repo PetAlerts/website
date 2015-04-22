@@ -1,0 +1,13 @@
+Django==1.8
+Pillow==2.8.1
+argparse==1.2.1
+dj-database-url==0.3.0
+dj-static==0.0.6
+django-toolbelt==0.0.1
+djangorestframework==3.1.1
+gunicorn==19.3.0
+nominatim==0.1
+psycopg2==2.6
+static3==0.5.1
+whitenoise==1.0.6
+wsgiref==0.1.2

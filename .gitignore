@@ -1,0 +1,7 @@
+env/
+*.sqlite3
+*.pyc
+.idea/
+staticfiles/
+media/
+.env
