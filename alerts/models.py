@@ -1,4 +1,5 @@
 import string
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext as _
 from nominatim import NominatimReverse
@@ -44,3 +45,6 @@ class Alert(models.Model):
         nomrev = NominatimReverse()
         result = nomrev.query(lat=self.lat, lon=self.lng)
         return result.get('display_name')
+
+    def get_absolute_url(self):
+        return reverse('alerts:detail', args=[str(self.id)])

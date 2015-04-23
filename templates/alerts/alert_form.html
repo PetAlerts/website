@@ -1,60 +1,54 @@
 {% extends 'base.html' %}
-{% load i18n humanize staticfiles crispy_forms_tags %}
+{% load i18n humanize staticfiles bootstrap %}
 
-{% block page_title %}{% blocktrans with object_id=object.id %}Alert {{ object_id }}{% endblocktrans %}{% endblock %}
+{{% block page_title %}{% trans 'Create alert' %}{% endblock %}
 
-{% block extra_styles %}
-    <link rel="stylesheet" href="{% static 'css/l.geosearch.css' %}" />
-{% endblock %}
+{% block page_title_2 %}{% trans 'Create alert' %}{% endblock %}
 
-{% block page_title_2 %}{% blocktrans with object_id=object.id %}Alert {{ object_id }}{% endblocktrans %}{% endblock %}
-
-{% block page_subtitle %}{{ object.date|naturaltime|capfirst }}{% endblock %}
+{% block page_subtitle %}{% trans 'Alert about a pet in danger' %}{% endblock %}
 
 {% block content %}
 
-{% if object.immediate_danger %}
-    <section class="padding-top">
-        <div class="container">
-            <div class="alert alert-danger text-uppercase text-center">
-                <h3><strong>{% trans 'In immediate danger' %}</strong></h3>
-            </div>
-        </div>
-    </section>
-{% endif %}
-
-<section id="map-section">
-        <div class="container">
-            <div class="col-md-6 col-sm-12">
-                <div class="contact-form bottom">
-                    <h2>Send a message</h2>
-                    {% crispy form %}
-
-                    <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
-                            <div class="form-group">
-                                <input name="name" class="form-control" required="required" placeholder="Name" type="text">
-                            </div>
-                            <div class="form-group">
-                                <input name="email" class="form-control" required="required" placeholder="Email Id" type="email">
-                            </div>
-                            <div class="form-group">
-                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your text here"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input name="submit" class="btn btn-submit" value="Submit" type="submit">
-                            </div>
-                        </form>
+    {% if object.immediate_danger %}
+        <section class="padding-top">
+            <div class="container">
+                <div class="alert alert-danger text-uppercase text-center">
+                    <h3><strong>{% trans 'In immediate danger' %}</strong></h3>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div id="gmap"></div>
-            </div>
+        </section>
+    {% endif %}
+
+    <section id="map-section">
+        <div class="container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-md-5 col-sm-12">
+                    <div class="contact-form form-horizontal">
+                        <h2>{% trans "Pet's details" %}</h2>
+                        {{ form|bootstrap_horizontal }}
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <h2>{% trans "Pet's current location" %}</h2>
+                    <input id="pac-input" class="controls" type="text" placeholder="{% trans 'Search place' %}">
+                    <div id="gmap"></div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input name="submit" class="btn btn-submit" value="{% trans 'Create alert' %}" type="submit">
+                    </div>
+                </div>
+            </form>
+
         </div>
     </section> <!--/#map-sectio
 {% endblock %}
 
 {% block extra_scripts %}
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 <script type="text/javascript" src="{% static 'js/gmaps.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 {% endblock %}

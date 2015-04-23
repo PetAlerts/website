@@ -3,10 +3,6 @@
 
 {% block page_title %}{% blocktrans with object_id=object.id %}Alert {{ object_id }}{% endblocktrans %}{% endblock %}
 
-{% block extra_styles %}
-    <link rel="stylesheet" href="{% static 'css/l.geosearch.css' %}" />
-{% endblock %}
-
 {% block page_title_2 %}{% blocktrans with object_id=object.id %}Alert {{ object_id }}{% endblocktrans %}{% endblock %}
 
 {% block page_subtitle %}{{ object.date|naturaltime|capfirst }}{% endblock %}
