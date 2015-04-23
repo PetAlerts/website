@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     # Third party
     'rest_framework',
     'autofixture',
+    'crispy_forms',
     # Project
     'alerts'
 )
@@ -113,3 +114,5 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
