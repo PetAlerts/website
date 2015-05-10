@@ -175,4 +175,11 @@ jQuery(function ($) {
         });
     }
 
+    $(window).keydown(function(event){
+    if( (event.keyCode == 13) && ($("#pac-input").is(":focus")) ) {
+      event.preventDefault();
+      return false;
+    }
+  });
+
 });
