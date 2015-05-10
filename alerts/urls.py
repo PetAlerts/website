@@ -4,7 +4,7 @@ import api
 import views
 
 router = routers.DefaultRouter()
-router.register(r'alert', api.AlertList)
+router.register(r'alert', api.AlertViewSet)
 
 urlpatterns = [
     url(r'^$', views.Home.as_view(), name='home'),
