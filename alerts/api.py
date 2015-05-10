@@ -1,6 +1,9 @@
 from rest_framework import serializers, viewsets, status
+from rest_framework.decorators import list_route
+from rest_framework.exceptions import ParseError
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+from petalerts.geo_utils import boundingBox
 from .models import Alert
 
 
@@ -41,3 +44,17 @@ class AlertViewSet(viewsets.ModelViewSet):
         if self.request.method == 'GET':
             return AlertSerializerWithDisplay
         return AlertSerializer
+
+    @list_route()
+    def nearby(self, request):
+        lat = request.QUERY_PARAMS.get('lat', '')
+        lng = request.QUERY_PARAMS.get('lng', '')
+        try:
+            box = boundingBox(float(lat), float(lng), 5)
+            queryset = Alert.objects.filter(lat__gte=box.sw_point.lat, lng__gte=box.sw_point.lng,
+                                            lat__lte=box.ne_point.lat, lng__lte=box.ne_point.lng)
+            page = self.paginate_queryset(queryset)
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        except ValueError:
+            raise ParseError("'lat' and 'lng' parameters must be float.")
