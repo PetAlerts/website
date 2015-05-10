@@ -15,12 +15,12 @@ class Alert(models.Model):
         (TYPE_DOG, _('Dog')),
         (TYPE_CAT, _('Cat')),
         (TYPE_OTHER, _('Other')))
-    GENRE_FEMALE = 'F'
-    GENRE_MALE = 'M'
-    GENRE_CHOICES = (
+    GENDER_FEMALE = 'F'
+    GENDER_MALE = 'M'
+    GENDER_CHOICES = (
         UNKNOWN_CHOICE,
-        (GENRE_FEMALE, _('Female')),
-        (GENRE_MALE, _('Male'))
+        (GENDER_FEMALE, _('Female')),
+        (GENDER_MALE, _('Male'))
     )
     AGE_CUB = 'Y'
     AGE_ADULT = 'A'
@@ -28,8 +28,8 @@ class Alert(models.Model):
         (AGE_CUB, _('Cub/Young')),
         (AGE_ADULT, _('Adult')))
 
-    species = models.CharField(choices=TYPE_CHOICES, max_length=1)
-    genre = models.CharField(choices=GENRE_CHOICES, max_length=1, default=UNKNOWN)
+    species = models.CharField(choices=TYPE_CHOICES, max_length=1, default=TYPE_DOG)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=1, default=UNKNOWN)
     age = models.CharField(choices=AGE_CHOICES, max_length=1, default=AGE_ADULT)
     immediate_danger = models.BooleanField(default=False, verbose_name=_('In immediate danger'))
     picture = models.ImageField()

@@ -35,9 +35,9 @@
                         <li>
                             <i class="fa fa-paw"></i> {% trans 'Species:' %} {{ object.get_species_display }}
                         </li>
-                        <li><i class="fa fa-paw"></i> {% trans 'Genre:' %} {{ object.get_genre_display }}
-                            {% if object.genre == object.GENRE_FEMALE %}<i class="fa fa-venus"></i>
-                            {% elif object.genre == object.GENRE_MALE %}<i class="fa fa-mars"></i>
+                        <li><i class="fa fa-paw"></i> {% trans 'Gender:' %} {{ object.get_genre_display }}
+                            {% if object.genre == object.GENDER_FEMALE %}<i class="fa fa-venus"></i>
+                            {% elif object.genre == object.GENDER_MALE %}<i class="fa fa-mars"></i>
                             {% endif %}</li>
                         <li><i class="fa fa-paw"></i> {% trans 'Age:' %} {{ object.get_age_display }}</li>
                     </ul>
