@@ -1,6 +1,12 @@
 from rest_framework import serializers, viewsets, status
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from .models import Alert
+
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    max_page_size = 20
 
 
 class AlertSerializer(serializers.ModelSerializer):
@@ -16,6 +22,7 @@ class AlertSerializerWithDisplay(AlertSerializer):
 
 class AlertViewSet(viewsets.ModelViewSet):
     queryset = Alert.objects.all()
+    pagination_class = StandardResultsSetPagination
 
     def create(self, request, *args, **kwargs):
         """
