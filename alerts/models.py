@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext as _
 from nominatim import NominatimReverse
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Alert(models.Model):
@@ -34,8 +35,18 @@ class Alert(models.Model):
     immediate_danger = models.BooleanField(default=False, verbose_name=_('In immediate danger'))
     picture = models.ImageField()
     date = models.DateTimeField(auto_now_add=True)
-    lat = models.FloatField()
-    lng = models.FloatField()
+    lat = models.FloatField(
+        validators=[
+            MaxValueValidator(90),
+            MinValueValidator(-90)
+        ]
+    )
+    lng = models.FloatField(
+        validators=[
+            MaxValueValidator(180),
+            MinValueValidator(-180)
+        ]
+    )
     details = models.CharField(max_length=500, verbose_name=_('Other details'), null=True, blank=True)
 
     def __unicode__(self):
