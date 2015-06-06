@@ -5,6 +5,7 @@ from django.utils.translation import ugettext as _
 from nominatim import NominatimReverse
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Alert(models.Model):
@@ -41,8 +42,18 @@ class Alert(models.Model):
                                  options={'quality': 90},
                                  verbose_name=_('Pet'))
     date = models.DateTimeField(auto_now_add=True)
-    lat = models.FloatField()
-    lng = models.FloatField()
+    lat = models.FloatField(
+        validators=[
+            MaxValueValidator(90),
+            MinValueValidator(-90)
+        ]
+    )
+    lng = models.FloatField(
+        validators=[
+            MaxValueValidator(180),
+            MinValueValidator(-180)
+        ]
+    )
     details = models.CharField(max_length=500, verbose_name=_('Other details'), null=True, blank=True)
 
     def __unicode__(self):
