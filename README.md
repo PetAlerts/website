@@ -7,7 +7,7 @@ Install `git` and clone the GitHub repository:
 
 Install system-wide dependencies:
 
-    $ sudo apt-get install libpq-dev python-dev python-virtualenv
+    $ sudo apt-get install libpq-dev libjpeg-dev python-dev python-virtualenv
 
 Install Heroku Toolbelt:
 

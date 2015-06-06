@@ -1,42 +1,29 @@
 {% extends 'base.html' %}
 {% load i18n humanize staticfiles bootstrap %}
+
+{% block page_title %}{% blocktrans with object_id=object.id %}Alert {{ object_id }}{% endblocktrans %}{% endblock %}
+
+{% block page_title_2 %}{% trans 'Login or signup' %}{% endblock %}
+
+{% block page_subtitle %}{{ object.date|naturaltime|capfirst }}{% endblock %}
+
 {% block content %}
+<div class="container">
+    <div class="row">
+        <h1 style="visibility: visible; animation-duration: 500ms; animation-delay: 300ms; animation-name: fadeInDown;"
+            class="title text-center wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="300ms">
+            {% trans 'Use your third party account' %}
+        </h1>
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
-    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
-
-    <!--[if lt IE 9]>
-        <script src="{% static 'js/html5shiv.js' %}"></script>
-        <script src="{% static 'js/respond.min.js' %}"></script>
-    <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
-    <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
-</head><!--/head-->
-
-	<body>
-
-    <div class="centered">
-      <h2><b>Welcome to Pet Alert</b><h2>
-        <div class="col-sm-2">
-		  <a class="btn btn-block btn-social btn-openid">
-             Alert
-          </a>
-        </div>
+        <p style="visibility: visible; animation-duration: 400ms; animation-delay: 400ms; animation-name: fadeInDown;"
+           class="text-center wow fadeInDown animated col-md-4 col-md-offset-4" data-wow-duration="400ms" data-wow-delay="400ms">
+            <a href="{% url 'social:begin' 'github' %}?next={{ request.path }}" class="btn btn-block btn-social btn-github">
+                <i class="fa fa-github"></i> {% trans 'Sign in with Github' %}
+            </a>
+            <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}" class="btn btn-block btn-social btn-twitter">
+                <i class="fa fa-twitter"></i> {% trans 'Sign in with Twitter' %}
+            </a>
+        </p>
     </div>
-  </body>
-
-</html>
-
+</div>
 {% endblock %}
