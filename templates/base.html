@@ -13,6 +13,7 @@
     <link href="{% static 'css/lightbox.css" rel="stylesheet' %}">
     <link href="{% static 'css/animate.min.css" rel="stylesheet' %}">
     <link href="{% static 'css/main.css" rel="stylesheet' %}">
+    <link href="{% static 'css/bootstrap-social.css" rel="stylesheet' %}">
     <link href="{% static 'css/responsive.css" rel="stylesheet' %}">
     <link href="{% static 'css/petalerts.css" rel="stylesheet' %}">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
@@ -71,19 +72,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'alerts:home' %}">{% trans 'Home' %}</a></li>
                     <li><a href="{% url 'alerts:create' %}">{% trans 'Alert' %}</a></li>
+                    <li><a href="{% url 'alerts:list' %}">{% trans 'List Alerts' %}</a></li>
                 </ul>
-            </div>
-            <div class="search">
-                <form role="form">
-                    <i class="fa fa-search"></i>
-
-                    <div class="field-toggle">
-                        <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                    </div>
-                </form>
             </div>
         </div>
     </div>
+    
 </header>
 <!--/#header-->
 
@@ -108,13 +102,15 @@
 
 <footer>
     <div class="container">
+        <div class="centered">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="petalerts/copyright-text text-center">
-                    <p>&copy; PetAlerts 2015. All Rights Reserved.</p>
-
-                    <p>Theme by <a target="_blank" href="http://www.themeum.com">Themeum</a></p>
-                </div>
+            <div class="col-sm-3">
+                <a href="{% url 'social:begin' 'github' %}?next={{ request.path }}" class="btn btn-block btn-social btn-github">
+                    <i class="fa fa-github"></i> Sign in with Github
+                </a>
+                <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}" class="btn btn-block btn-social btn-twitter">
+                    <i class="fa fa-twitter"></i> Sign in with Twitter
+                </a>
             </div>
         </div>
     </div>

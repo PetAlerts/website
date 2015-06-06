@@ -49,10 +49,13 @@ class AlertViewSet(viewsets.ModelViewSet):
     def nearby(self, request):
         lat = request.QUERY_PARAMS.get('lat', '')
         lng = request.QUERY_PARAMS.get('lng', '')
+        spe = request.QUERY_PARAMS.get('species')
         try:
             box = boundingBox(float(lat), float(lng), 5)
             queryset = Alert.objects.filter(lat__gte=box.sw_point.lat, lng__gte=box.sw_point.lng,
                                             lat__lte=box.ne_point.lat, lng__lte=box.ne_point.lng)
+            if spe is not None:
+                queryset = queryset.filter(species=spe)
             page = self.paginate_queryset(queryset)
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
