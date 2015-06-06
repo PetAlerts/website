@@ -15,10 +15,10 @@ from .models import Alert
 class Home(TemplateView):
     template_name = 'home.html'
 
-    # @classmethod
-    # def as_view(cls, **initkwargs):
-    #     view = super(Home, cls).as_view(**initkwargs)
-    #     return login_required(view)
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(Home, cls).as_view(**initkwargs)
+        return login_required(view)
 
 
 class AlertDetailView(DetailView):
