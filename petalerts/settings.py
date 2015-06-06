@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     # Third party
     'rest_framework',
     'autofixture',
+    'imagekit',
     'bootstrapform',
     # Project
     'alerts'

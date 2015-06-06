@@ -11,3 +11,4 @@ Pillow==2.8.1
 psycopg2==2.6
 static3==0.5.1
 whitenoise==1.0.6
+django-imagekit
