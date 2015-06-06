@@ -19,6 +19,7 @@ class Home(TemplateView):
         view = super(Home, cls).as_view(**initkwargs)
         return login_required(view)
 
+
 class AlertDetailView(DetailView):
     model = Alert
 
@@ -47,25 +48,6 @@ class AlertCreateView(CreateView):
     model = Alert
     form_class = AlertForm
 
-
-def sign_up(request):
-    form = UserCreationForm()
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            new_user.is_active = False
-            new_user.save()
-            return home(request)
-    return render_to_response(
-        'registration/signup.html',
-        RequestContext(
-            request,
-            {
-                'form': form,
-            }
-        )
-    )
 
 def login(request):
     return render(request, 'registration/login.html')
