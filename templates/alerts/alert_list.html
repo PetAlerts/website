@@ -10,25 +10,19 @@
                     <div class="col-md-6 col-sm-12 blog-padding-right">
                         <div class="single-blog two-column">
                             <div class="post-thumb">
-                                <a href="blogdetails.html"><img src="{{ alert.picture.url }}" class="img-responsive"
+                                <a href="{% url 'alerts:detail' alert.pk %}"><img src="{{ alert.picture.url }}" class="img-responsive"
                                                                 alt=""></a>
 
-                                <div class="post-overlay">
-                                    <span class="uppercase"><a href="#">14 <br>
-                                        <small>Feb</small>
-                                    </a></span>
-                                </div>
                             </div>
                             <div class="post-content overflow">
-                                <h2 class="post-title bold"><a href="blogdetails.html">{{ alert.get_species_display
-                                    }}</a></h2>
+                                <h2 class="post-title bold">{{ alert.get_species_display}}</h2>
 
                                 <h3 class="post-author">{{ alert.date }}</h3>
 
                                 <h3 class="post-author">{{ alert.get_age_display }}</h3>
 
                                 <p>{{alert.details}}</p>
-                                <a href="#" class="read-more">View More</a>
+                                <a href="{% url 'alerts:detail' alert.pk %}" class="read-more">View More</a>
 
                                 <div class="post-bottom overflow">
                                     <ul class="nav nav-justified post-nav">
@@ -43,21 +37,25 @@
                     {% endfor %}
 
                 </div>
+                {% if is_paginated %}
                 <div class="blog-pagination">
                     <ul class="pagination">
-                        <li><a href="#">left</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li class="active"><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">7</a></li>
-                        <li><a href="#">8</a></li>
-                        <li><a href="#">9</a></li>
-                        <li><a href="#">right</a></li>
+                        {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}">left</a></li>
+                        {% endif %}
+                        {% for i in paginator.page_range %}
+                        <li {% if page_obj.number == i %} class="active"{% endif %}>
+                            <a href="?page={{ i }}">{{ i }}</a>
+                        </li>
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}">right</a></li>
+                        {% endif %}
+
+
                     </ul>
                 </div>
+                {% endif %}
             </div>
             <div class="col-md-3 col-sm-5">
                 <div class="sidebar blog-sidebar">
@@ -69,8 +67,6 @@
                             <li><a href="{% url 'alerts:list' %}?species=O">Other</a></li>
                         </ul>
                     </div>
-
-
                 </div>
             </div>
         </div>
