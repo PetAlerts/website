@@ -7,7 +7,7 @@ Install `git` and clone the GitHub repository:
 
 Install system-wide dependencies:
 
-    $ sudo apt-get install libpq-dev python-dev
+    $ sudo apt-get install libpq-dev python-dev python-virtualenv
 
 Install Heroku Toolbelt:
 
@@ -15,7 +15,6 @@ Install Heroku Toolbelt:
 
 Use `virtualenv` and install required packages:
 
-    $ sudo apt-get python-virtualenv
     $ cd website
     $ virtualenv env
     $ source env/bin/activate
@@ -24,6 +23,10 @@ Use `virtualenv` and install required packages:
 Create an `.env` file with content:
 
     DATABASE_URL="sqlite:////path/to/db.sqlite3"
+
+Migrate:
+
+    $ foreman run ./manage.py migrate
 
 Run the development server:
 
