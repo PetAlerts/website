@@ -69,3 +69,7 @@ html, body, #map-canvas {
     font-size: 13px;
     font-weight: 300;
 }
+
+.centered {
+    text-align:center;
+}

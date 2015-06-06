@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-import api
-import views
+from alerts import api
+from alerts import views
 
 router = routers.DefaultRouter()
 router.register(r'alert', api.AlertViewSet)
