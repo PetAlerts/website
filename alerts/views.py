@@ -7,7 +7,7 @@ from .models import Alert
 
 
 class Home(TemplateView):
-    template_name = 'coming-soon.html'
+    template_name = 'home.html'
 
 
 class AlertDetailView(DetailView):
