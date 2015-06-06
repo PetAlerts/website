@@ -43,6 +43,7 @@ class AlertCreateView(CreateView):
 class AlertList(ListView):
     template_name = "alerts/alert_list.html"
     model = Alert
+    paginate_by = 2
 
     def get_queryset(self):
         species = self.request.GET.get('species')
