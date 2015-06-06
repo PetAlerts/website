@@ -3,6 +3,9 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext as _
 from nominatim import NominatimReverse
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFit
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Alert(models.Model):
@@ -32,10 +35,25 @@ class Alert(models.Model):
     gender = models.CharField(choices=GENDER_CHOICES, max_length=1, default=UNKNOWN)
     age = models.CharField(choices=AGE_CHOICES, max_length=1, default=AGE_ADULT)
     immediate_danger = models.BooleanField(default=False, verbose_name=_('In immediate danger'))
-    picture = models.ImageField()
+    picture = ProcessedImageField(upload_to='.',
+                                 blank=True, null=True,
+                                 processors=[ResizeToFit(265, 320)],
+                                 format='JPEG',
+                                 options={'quality': 90},
+                                 verbose_name=_('Pet'))
     date = models.DateTimeField(auto_now_add=True)
-    lat = models.FloatField()
-    lng = models.FloatField()
+    lat = models.FloatField(
+        validators=[
+            MaxValueValidator(90),
+            MinValueValidator(-90)
+        ]
+    )
+    lng = models.FloatField(
+        validators=[
+            MaxValueValidator(180),
+            MinValueValidator(-180)
+        ]
+    )
     details = models.CharField(max_length=500, verbose_name=_('Other details'), null=True, blank=True)
 
     def __unicode__(self):

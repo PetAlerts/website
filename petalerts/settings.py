@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     # Third party
     'rest_framework',
     'autofixture',
+    'imagekit',
     'bootstrapform',
     'social.apps.django_app.default',
     # Project

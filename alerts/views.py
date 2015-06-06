@@ -1,4 +1,5 @@
 from django import forms
+from django.views.generic import ListView
 from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
@@ -12,7 +13,7 @@ from .models import Alert
 
 
 class Home(TemplateView):
-    template_name = 'coming-soon.html'
+    template_name = 'home.html'
 
     @classmethod
     def as_view(cls, **initkwargs):
@@ -48,6 +49,17 @@ class AlertCreateView(CreateView):
     model = Alert
     form_class = AlertForm
 
+
+class AlertList(ListView):
+    template_name = "alerts/alert_list.html"
+    model = Alert
+
+    def get_queryset(self):
+        species = self.request.GET.get('species')
+        q = super(AlertList, self).get_queryset()
+        if species is not None:
+            return q.filter(species=species)
+        return q
 
 def login(request):
     return render(request, 'registration/login.html')
