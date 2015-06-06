@@ -51,7 +51,7 @@ class AlertViewSet(viewsets.ModelViewSet):
         lng = request.QUERY_PARAMS.get('lng', '')
         spe = request.QUERY_PARAMS.get('species')
         try:
-            box = boundingBox(float(lat), float(lng), 500)
+            box = boundingBox(float(lat), float(lng), 5)
             queryset = Alert.objects.filter(lat__gte=box.sw_point.lat, lng__gte=box.sw_point.lng,
                                             lat__lte=box.ne_point.lat, lng__lte=box.ne_point.lng)
             if spe is not None:
