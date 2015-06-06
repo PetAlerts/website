@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='post' action='.'>
+    {% csrf_token %}<br><br><br>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-3">
+                <div class="form-group">
+                    {{ form }}
+                    {{ form.errors }}
+                </div>
+                <a href="/" class="btn btn-default pull-left">cancelar</a>
+                <button type="submit" class="btn btn-primary pull-right">aceptar</button>
+            </div>
+        </div>
+</form>
+{% endblock %}
