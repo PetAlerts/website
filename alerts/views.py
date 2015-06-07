@@ -6,9 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.template import RequestContext
-from django.shortcuts import render_to_response, redirect, render
+from django.shortcuts import redirect, render
 from .models import Alert
 
 
@@ -53,7 +51,8 @@ class AlertCreateView(CreateView):
 class AlertList(ListView):
     template_name = "alerts/alert_list.html"
     model = Alert
-    paginate_by = 2
+    paginate_by = 6
+    ordering = ['-date']
 
     def get_queryset(self):
         species = self.request.GET.get('species')
@@ -62,8 +61,15 @@ class AlertList(ListView):
             return q.filter(species=species)
         return q
 
+    def get_context_data(self, **kwargs):
+        context = super(AlertList, self).get_context_data()
+        context['species'] = Alert.SPECIES_CHOICES
+        return context
+
+
 def login(request):
     return render(request, 'registration/login.html')
+
 
 def logout(request):
     auth_logout(request)

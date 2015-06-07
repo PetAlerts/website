@@ -64,15 +64,15 @@
                 </button>
 
                 <a class="navbar-brand" href="{% url 'alerts:home' %}">
-                    <h1><img style="height:auto; width:auto; max-width:100px; max-height:100px;" src="{% static 'images/logo.png' %}" alt="logo"></h1>
+                    <h1><img style="height:auto; width:auto; max-width:180px; max-height:100px;" src="{% static 'images/logo.png' %}" alt="logo"></h1>
                 </a>
 
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'alerts:home' %}">{% trans 'Home' %}</a></li>
-                    <li><a href="{% url 'alerts:create' %}">{% trans 'Alert' %}</a></li>
-                    <li><a href="{% url 'alerts:list' %}">{% trans 'List Alerts' %}</a></li>
+                    <li><a href="{% url 'alerts:create' %}">{% trans 'Create alert' %}</a></li>
+                    <li><a href="{% url 'alerts:list' %}">{% trans 'Latest alerts' %}</a></li>
                 </ul>
             </div>
         </div>

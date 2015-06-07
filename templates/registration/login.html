@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n humanize staticfiles bootstrap %}
 
-{% block page_title %}{% blocktrans with object_id=object.id %}Alert {{ object_id }}{% endblocktrans %}{% endblock %}
+{% block page_title %}{% trans 'Login or signup' %}{% endblock %}
 
 {% block page_title_2 %}{% trans 'Login or signup' %}{% endblock %}
 
@@ -10,6 +10,12 @@
 {% block content %}
 <div class="container">
     <div class="row">
+        {% if user.is_authenticated %}
+        <h1 style="visibility: visible; animation-duration: 500ms; animation-delay: 300ms; animation-name: fadeInDown;"
+            class="title text-center wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="300ms">
+            Welcome, {{ user.username }}!!!
+        </h1>
+        {% else %}
         <h1 style="visibility: visible; animation-duration: 500ms; animation-delay: 300ms; animation-name: fadeInDown;"
             class="title text-center wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="300ms">
             {% trans 'Use your third party account' %}
@@ -24,6 +30,7 @@
                 <i class="fa fa-twitter"></i> {% trans 'Sign in with Twitter' %}
             </a>
         </p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
