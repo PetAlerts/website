@@ -47,12 +47,11 @@ INSTALLED_APPS = (
     'bootstrapform',
     'social.apps.django_app.default',
     # Project
-    'alerts'
+    'alerts',
+    'users'
 )
 
 AUTHENTICATION_BACKENDS = (
-    #'social.backends.facebook.FacebookOAuth2',
-    #'social.backends.google.GoogleOAuth2',
     'social.backends.twitter.TwitterOAuth',
     'social.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',

@@ -22,8 +22,8 @@
 <section id="portfolio-information" class="padding-top">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
-                <img src="{{ object.picture.url }}" class="img-responsive" alt="">
+            <div class="col-sm-6 text-center">
+                <img src="{{ object.picture.url }}" class="img-responsive img-detail" alt="">
             </div>
             <div class="col-sm-6">
                 <div class="project-name overflow">
@@ -36,8 +36,8 @@
                             <i class="fa fa-paw"></i> {% trans 'Species:' %} {{ object.get_species_display }}
                         </li>
                         <li><i class="fa fa-paw"></i> {% trans 'Gender:' %} {{ object.get_gender_display }}
-                            {% if object.genre == object.GENDER_FEMALE %}<i class="fa fa-venus"></i>
-                            {% elif object.genre == object.GENDER_MALE %}<i class="fa fa-mars"></i>
+                            {% if object.gender == object.GENDER_FEMALE %}<i class="fa fa-venus"></i>
+                            {% elif object.gender == object.GENDER_MALE %}<i class="fa fa-mars"></i>
                             {% endif %}</li>
                         <li><i class="fa fa-paw"></i> {% trans 'Age:' %} {{ object.get_age_display }}</li>
                     </ul>

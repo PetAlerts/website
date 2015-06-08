@@ -4,9 +4,7 @@ from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
 from .models import Alert
 
 
@@ -65,12 +63,3 @@ class AlertList(ListView):
         context = super(AlertList, self).get_context_data()
         context['species'] = Alert.SPECIES_CHOICES
         return context
-
-
-def login(request):
-    return render(request, 'registration/login.html')
-
-
-def logout(request):
-    auth_logout(request)
-    return redirect('/')
