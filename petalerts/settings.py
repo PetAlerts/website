@@ -14,8 +14,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import dj_database_url
 
-from config import *
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -49,12 +47,11 @@ INSTALLED_APPS = (
     'bootstrapform',
     'social.apps.django_app.default',
     # Project
-    'alerts'
+    'alerts',
+    'users'
 )
 
 AUTHENTICATION_BACKENDS = (
-    #'social.backends.facebook.FacebookOAuth2',
-    #'social.backends.google.GoogleOAuth2',
     'social.backends.twitter.TwitterOAuth',
     'social.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
@@ -148,3 +145,9 @@ TEMPLATE_DIRS = [
     os.path.join(BASE_DIR, "../templates/"),
     os.path.join(BASE_DIR, "./templates/"),
 ]
+
+SOCIAL_AUTH_GITHUB_KEY = os.environ.get('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = os.environ.get('SOCIAL_AUTH_GITHUB_SECRET')
+
+SOCIAL_AUTH_TWITTER_KEY = os.environ.get('SOCIAL_AUTH_TWITTER_KEY')
+SOCIAL_AUTH_TWITTER_SECRET = os.environ.get('SOCIAL_AUTH_TWITTER_SECRET')

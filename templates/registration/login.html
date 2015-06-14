@@ -1,13 +1,36 @@
 {% extends 'base.html' %}
+{% load i18n humanize staticfiles bootstrap %}
+
+{% block page_title %}{% trans 'Login or signup' %}{% endblock %}
+
+{% block page_title_2 %}{% trans 'Login or signup' %}{% endblock %}
+
+{% block page_subtitle %}{{ object.date|naturaltime|capfirst }}{% endblock %}
 
 {% block content %}
-{% if user and not user.is_anonymous %}
-    <a>Hello, {{ user.get_full_name }}!</a>
-    <br>
-    <a href="/logout">Logout</a>
-{% else %}
-    <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
-    <a href="{% url 'social:begin' 'github' %}?next={{ request.path }}">Login with GitHub</a>
-{% endif %}
+<div class="container">
+    <div class="row">
+        {% if user.is_authenticated %}
+        <h1 style="visibility: visible; animation-duration: 500ms; animation-delay: 300ms; animation-name: fadeInDown;"
+            class="title text-center wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="300ms">
+            Welcome, {{ user.username }}!!!
+        </h1>
+        {% else %}
+        <h1 style="visibility: visible; animation-duration: 500ms; animation-delay: 300ms; animation-name: fadeInDown;"
+            class="title text-center wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="300ms">
+            {% trans 'Use your third party account' %}
+        </h1>
 
+        <p style="visibility: visible; animation-duration: 400ms; animation-delay: 400ms; animation-name: fadeInDown;"
+           class="text-center wow fadeInDown animated col-md-4 col-md-offset-4" data-wow-duration="400ms" data-wow-delay="400ms">
+            <a href="{% url 'social:begin' 'github' %}?next={{ request.path }}" class="btn btn-block btn-social btn-github">
+                <i class="fa fa-github"></i> {% trans 'Sign in with Github' %}
+            </a>
+            <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-block btn-social btn-twitter">
+                <i class="fa fa-twitter"></i> {% trans 'Sign in with Twitter' %}
+            </a>
+        </p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

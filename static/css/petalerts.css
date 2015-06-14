@@ -73,3 +73,31 @@ html, body, #map-canvas {
 .centered {
     text-align:center;
 }
+
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 22px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+}
+
+.img-detail {
+    display: inline-block;
+}
+
+.categories .navbar-stacked li.active a:after {
+    display: none;
+}
+
+.categories .navbar-stacked li.active a:before {
+    position: absolute;
+    content: "";
+    font-family: FontAwesome;
+    font-size: 12px;
+    border-width: 0px;
+    border-style: solid;
+    border-color: transparent;
+    top: auto;
+}

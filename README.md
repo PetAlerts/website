@@ -7,7 +7,7 @@ Install `git` and clone the GitHub repository:
 
 Install system-wide dependencies:
 
-    $ sudo apt-get install libpq-dev python-dev python-virtualenv
+    $ sudo apt-get install libpq-dev libjpeg-dev python-dev python-virtualenv
 
 Install Heroku Toolbelt:
 
@@ -22,7 +22,13 @@ Use `virtualenv` and install required packages:
 
 Create an `.env` file with content:
 
-    DATABASE_URL="sqlite:////path/to/db.sqlite3"
+    DATABASE_URL="sqlite:////home/filly/Code/website/db.sqlite3"
+
+    SOCIAL_AUTH_GITHUB_KEY = 'your_github_key'
+    SOCIAL_AUTH_GITHUB_SECRET = 'your_github_secret_key'
+
+    SOCIAL_AUTH_TWITTER_KEY = 'your_twitter_key'
+    SOCIAL_AUTH_TWITTER_SECRET = 'your_twitter_secret_key'
 
 Migrate:
 

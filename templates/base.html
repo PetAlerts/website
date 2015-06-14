@@ -13,6 +13,7 @@
     <link href="{% static 'css/lightbox.css" rel="stylesheet' %}">
     <link href="{% static 'css/animate.min.css" rel="stylesheet' %}">
     <link href="{% static 'css/main.css" rel="stylesheet' %}">
+    <link href="{% static 'css/bootstrap-social.css" rel="stylesheet' %}">
     <link href="{% static 'css/responsive.css" rel="stylesheet' %}">
     <link href="{% static 'css/petalerts.css" rel="stylesheet' %}">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
@@ -42,12 +43,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 overflow">
-                <div class="social-icons pull-right">
-                    <ul class="nav nav-pills">
-                        <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                        <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
+                <div class="pull-right">
+                    {% if user.is_authenticated %}
+                        <p>{% blocktrans with username=user.username %}Welcome, {{ username }}!{% endblocktrans %}
+                           <a href="{% url 'users:logout' %}">{% trans 'Logout' %}</a></p>
+                    {% else %}
+                        <p><a href="{% url 'users:login' %}">{% trans 'Login or signup' %}</a></p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -63,27 +65,20 @@
                 </button>
 
                 <a class="navbar-brand" href="{% url 'alerts:home' %}">
-                    <h1><img style="height:auto; width:auto; max-width:100px; max-height:100px;" src="{% static 'images/logo.png' %}" alt="logo"></h1>
+                    <h1><img style="height:auto; width:auto; max-width:180px; max-height:100px;" src="{% static 'images/logo.png' %}" alt="logo"></h1>
                 </a>
 
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'alerts:home' %}">{% trans 'Home' %}</a></li>
-                    <li><a href="{% url 'alerts:create' %}">{% trans 'Alert' %}</a></li>
+                    <li><a href="{% url 'alerts:create' %}">{% trans 'Create alert' %}</a></li>
+                    <li><a href="{% url 'alerts:list' %}">{% trans 'Latest alerts' %}</a></li>
                 </ul>
-            </div>
-            <div class="search">
-                <form role="form">
-                    <i class="fa fa-search"></i>
-
-                    <div class="field-toggle">
-                        <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                    </div>
-                </form>
             </div>
         </div>
     </div>
+    
 </header>
 <!--/#header-->
 
@@ -108,14 +103,16 @@
 
 <footer>
     <div class="container">
+        <div class="centered">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="petalerts/copyright-text text-center">
-                    <p>&copy; PetAlerts 2015. All Rights Reserved.</p>
-
-                    <p>Theme by <a target="_blank" href="http://www.themeum.com">Themeum</a></p>
-                </div>
-            </div>
+            <!--<div class="col-sm-3">-->
+                <!--<a href="{% url 'social:begin' 'github' %}?next={{ request.path }}" class="btn btn-block btn-social btn-github">-->
+                    <!--<i class="fa fa-github"></i> Sign in with Github-->
+                <!--</a>-->
+                <!--<a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}" class="btn btn-block btn-social btn-twitter">-->
+                    <!--<i class="fa fa-twitter"></i> Sign in with Twitter-->
+                <!--</a>-->
+            <!--</div>-->
         </div>
     </div>
 </footer>
