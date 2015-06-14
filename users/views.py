@@ -22,7 +22,12 @@ def logout(request):
 
 
 class UserSubscriptionsList(ListView):
-    pass
+    model = AreaSubscription
+    template_name = 'users/subscriptions_list.html'
+
+    def get_queryset(self):
+        q = super(UserSubscriptionsList, self).get_queryset()
+        return q.filter(user=self.request.user)
 
 
 class SubscriptionForm(FormWithCoordinates):
@@ -36,7 +41,7 @@ class SubscriptionForm(FormWithCoordinates):
 
 
 class UserSubscriptionsCreate(CreateView):
-    template_name = 'users/subscriptions.html'
+    template_name = 'users/subscription_form.html'
     form_class = SubscriptionForm
 
     def get_form_kwargs(self):

@@ -15,7 +15,8 @@ class AreaSubscription(ModelWithLocation):
         validators=[
             MinValueValidator(1),
             MaxValueValidator(7)
-        ])
+        ],
+        default=4)
 
     def clean(self):
         if self.user.areasubscription_set.count() >= 2:
