@@ -1,0 +1,35 @@
+{%  extends "base.html"%}
+{% load i18n bootstrap staticfiles %}
+
+{% block content %}
+<section id="map-section">
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-md-12 col-sm-12">
+                <div class="contact-form form-horizontal">
+                    <h2>{% trans "Pet's details" %}</h2>
+                    {{ form|bootstrap_horizontal }}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <input id="pac-input" class="controls" type="text" placeholder="{% trans 'Search place' %}">
+                <div id="gmap"></div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input name="submit" class="btn btn-submit" value="{% trans 'Create alert' %}" type="submit">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+<script type="text/javascript" src="{% static 'js/gmaps.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+{% endblock %}
