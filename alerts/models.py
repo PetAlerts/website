@@ -1,7 +1,9 @@
 import string
+
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext as _
+
 from nominatim import NominatimReverse
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
@@ -30,11 +32,12 @@ class Alert(ModelWithLocation):
     AGE_ADULT = 'A'
     AGE_CHOICES = (
         (AGE_CUB, _('Cub/Young')),
-        (AGE_ADULT, _('Adult')))
+        (AGE_ADULT, _('Adult'))
+    )
 
-    species = models.CharField(choices=SPECIES_CHOICES, max_length=1, default=SPECIES_DOG)
-    gender = models.CharField(choices=GENDER_CHOICES, max_length=1, default=UNKNOWN)
-    age = models.CharField(choices=AGE_CHOICES, max_length=1, default=AGE_ADULT)
+    species = models.CharField(choices=SPECIES_CHOICES, max_length=1, verbose_name=_('Species'), default=SPECIES_DOG)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=1, verbose_name=_('Gender'), default=UNKNOWN)
+    age = models.CharField(choices=AGE_CHOICES, max_length=1, verbose_name=_('Age'), default=AGE_ADULT)
     immediate_danger = models.BooleanField(default=False, verbose_name=_('In immediate danger'))
     picture = ProcessedImageField(upload_to='.',
                                   blank=True, null=True,
