@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-19 04:43+0000\n"
+"POT-Creation-Date: 2015-06-19 05:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgid "Location"
 msgstr "Ubicación"
 
 #: templates/alerts/alert_form.html:4 templates/alerts/alert_form.html.py:6
-#: templates/alerts/alert_form.html:53 templates/base.html:76
+#: templates/alerts/alert_form.html:41 templates/base.html:76
 #: templates/users/subscription_form.html:23
 msgid "Create alert"
 msgstr "Crear alerta"
@@ -127,16 +127,11 @@ msgstr "Alerta de un animal en peligro"
 msgid "Pet's details"
 msgstr "Detalles del animal"
 
-#: templates/alerts/alert_form.html:39
-#, python-format
-msgid " %(field)s "
-msgstr ""
-
-#: templates/alerts/alert_form.html:46
+#: templates/alerts/alert_form.html:34
 msgid "Pet's current location"
 msgstr "Ubicación actual del animal"
 
-#: templates/alerts/alert_form.html:47
+#: templates/alerts/alert_form.html:35
 #: templates/users/subscription_form.html:17
 msgid "Search place"
 msgstr "Buscar lugar"
