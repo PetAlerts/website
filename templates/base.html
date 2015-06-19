@@ -45,7 +45,8 @@
             <div class="col-sm-12 overflow">
                 <div class="pull-right">
                     {% if user.is_authenticated %}
-                        <p>{% blocktrans with username=user.username %}Welcome, {{ username }}!{% endblocktrans %}
+                        {% url 'users:subscriptions' as user_subscriptions %}
+                        <p>{% blocktrans with username=user.username %}Welcome, <a href="{{ user_subscriptions }}">{{ username }}</a>!{% endblocktrans %}
                            <a href="{% url 'users:logout' %}">{% trans 'Logout' %}</a></p>
                     {% else %}
                         <p><a href="{% url 'users:login' %}">{% trans 'Login or signup' %}</a></p>

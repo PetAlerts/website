@@ -26,8 +26,10 @@
                 <div class="col-md-5 col-sm-12">
                     <div class="contact-form form-horizontal">
                         <h2>{% trans "Pet's details" %}</h2>
+                        {% blocktrans %}
                         {{ form|bootstrap_horizontal }}
-                    </div>
+                        {% endblocktrans %}
+                        </div>
                 </div>
 
                 <div class="col-md-7">
@@ -44,8 +46,8 @@
             </form>
 
         </div>
-    </section> 
-{% endblock %}<!--/#map-sectio
+    </section>
+{% endblock %}
 
 {% block extra_scripts %}
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>

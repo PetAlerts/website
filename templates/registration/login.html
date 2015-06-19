@@ -23,11 +23,11 @@
 
         <p style="visibility: visible; animation-duration: 400ms; animation-delay: 400ms; animation-name: fadeInDown;"
            class="text-center wow fadeInDown animated col-md-4 col-md-offset-4" data-wow-duration="400ms" data-wow-delay="400ms">
-            <a href="{% url 'social:begin' 'github' %}?next={{ request.path }}" class="btn btn-block btn-social btn-github">
-                <i class="fa fa-github"></i> {% trans 'Sign in with Github' %}
-            </a>
             <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-block btn-social btn-twitter">
                 <i class="fa fa-twitter"></i> {% trans 'Sign in with Twitter' %}
+            </a>
+            <a href="{% url 'social:begin' 'github' %}?next={{ request.path }}" class="btn btn-block btn-social btn-github">
+                <i class="fa fa-github"></i> {% trans 'Sign in with Github' %}
             </a>
         </p>
         {% endif %}

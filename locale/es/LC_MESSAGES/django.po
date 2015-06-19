@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-14 04:43+0000\n"
+"POT-Creation-Date: 2015-06-19 04:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,84 +18,84 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: alerts/models.py:16
+#: alerts/models.py:14
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: alerts/models.py:21
+#: alerts/models.py:19
 msgid "Dog"
 msgstr "Perro"
 
-#: alerts/models.py:22
+#: alerts/models.py:20
 msgid "Cat"
 msgstr "Gato"
 
-#: alerts/models.py:23
+#: alerts/models.py:21
 msgid "Other"
 msgstr "Otro"
 
-#: alerts/models.py:28
+#: alerts/models.py:26
 msgid "Female"
 msgstr "Hembra"
 
-#: alerts/models.py:29
+#: alerts/models.py:27
 msgid "Male"
 msgstr "Macho"
 
-#: alerts/models.py:34
+#: alerts/models.py:32
 msgid "Cub/Young"
 msgstr "Cachorro/Joven"
 
-#: alerts/models.py:35
+#: alerts/models.py:33
 msgid "Adult"
 msgstr "Adulto"
 
-#: alerts/models.py:38
+#: alerts/models.py:36
 msgid "Species"
 msgstr "Especie"
 
-#: alerts/models.py:39
+#: alerts/models.py:41
 msgid "Gender"
 msgstr "Género"
 
-#: alerts/models.py:40
+#: alerts/models.py:46
 msgid "Age"
 msgstr "Edad"
 
-#: alerts/models.py:41 templates/alerts/alert_detail.html:16
+#: alerts/models.py:50 templates/alerts/alert_detail.html:16
 #: templates/alerts/alert_form.html:16
 msgid "In immediate danger"
 msgstr "En peligro inmediato"
 
-#: alerts/models.py:47
+#: alerts/models.py:56
 msgid "Pet"
-msgstr ""
+msgstr "Animal"
 
-#: alerts/models.py:49 templates/alerts/alert_detail.html:47
+#: alerts/models.py:60 templates/alerts/alert_detail.html:47
 msgid "Other details"
-msgstr ""
+msgstr "Otros detalles"
 
-#: alerts/views.py:41
-msgid "You must provide the pet's location."
-msgstr ""
+#: petalerts/forms.py:17
+msgid "You must provide a location."
+msgstr "Debes dar la ubicación"
 
 #: petalerts/settings.py:116
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: petalerts/settings.py:117
 msgid "English"
-msgstr ""
+msgstr "Inglés"
 
 #: templates/alerts/alert_detail.html:4 templates/alerts/alert_detail.html:6
 #: templates/home.html:4
 #, python-format
 msgid "Alert %(object_id)s"
-msgstr ""
+msgstr "Alerta %(object_id)s"
 
 #: templates/alerts/alert_detail.html:30
 msgid "Details"
-msgstr ""
+msgstr "Detalles"
 
 #: templates/alerts/alert_detail.html:36
 msgid "Species:"
@@ -107,14 +107,15 @@ msgstr "Género"
 
 #: templates/alerts/alert_detail.html:42
 msgid "Age:"
-msgstr ""
+msgstr "Edad"
 
 #: templates/alerts/alert_detail.html:52
 msgid "Location"
-msgstr ""
+msgstr "Ubicación"
 
 #: templates/alerts/alert_form.html:4 templates/alerts/alert_form.html.py:6
-#: templates/alerts/alert_form.html:41 templates/base.html:75
+#: templates/alerts/alert_form.html:53 templates/base.html:76
+#: templates/users/subscription_form.html:23
 msgid "Create alert"
 msgstr "Crear alerta"
 
@@ -126,65 +127,79 @@ msgstr "Alerta de un animal en peligro"
 msgid "Pet's details"
 msgstr "Detalles del animal"
 
-#: templates/alerts/alert_form.html:34
+#: templates/alerts/alert_form.html:39
+#, python-format
+msgid " %(field)s "
+msgstr ""
+
+#: templates/alerts/alert_form.html:46
 msgid "Pet's current location"
 msgstr "Ubicación actual del animal"
 
-#: templates/alerts/alert_form.html:35
+#: templates/alerts/alert_form.html:47
+#: templates/users/subscription_form.html:17
 msgid "Search place"
-msgstr "Buscar ubicación"
+msgstr "Buscar lugar"
 
 #: templates/alerts/alert_list.html:4 templates/alerts/alert_list.html.py:6
-#: templates/base.html:76
+#: templates/base.html:77
 msgid "Latest alerts"
-msgstr ""
+msgstr "Últimas alertas"
+
+#: templates/alerts/alert_list.html:32
+msgid "View More"
+msgstr "Ver más"
 
 #: templates/alerts/alert_list.html:38
 msgid "No alerts found."
-msgstr ""
+msgstr "No se encontraon alertas"
 
 #: templates/alerts/alert_list.html:68
 msgid "Filter by species"
-msgstr ""
+msgstr "Filtrar por espece"
 
 #: templates/alerts/alert_list.html:71
 msgid "All"
-msgstr ""
-
-#: templates/base.html:48
-#, python-format
-msgid "Welcome, %(username)s!"
-msgstr ""
+msgstr "Todas"
 
 #: templates/base.html:49
-msgid "Logout"
-msgstr ""
+#, python-format
+msgid "Welcome, <a href=\"%(user_subscriptions)s\">%(username)s</a>!"
+msgstr "Bienvenido, <a href=\"%(user_subscriptions)s\">%(username)s</a>"
 
-#: templates/base.html:51 templates/home.html:6
+#: templates/base.html:50
+msgid "Logout"
+msgstr "Salir"
+
+#: templates/base.html:52 templates/home.html:6
 #: templates/registration/login.html:4 templates/registration/login.html:6
 msgid "Login or signup"
-msgstr ""
+msgstr "Acceder"
 
-#: templates/base.html:74
+#: templates/base.html:75
 msgid "Home"
 msgstr ""
 
 #: templates/home.html:15 templates/registration/login.html:21
 msgid "Use your third party account"
-msgstr ""
+msgstr "Usa una cuenta externa para acceder"
 
-#: templates/home.html:21 templates/registration/login.html:27
+#: templates/home.html:21 templates/registration/login.html:30
 msgid "Sign in with Github"
-msgstr ""
+msgstr "Acceder con Github"
 
-#: templates/home.html:24 templates/registration/login.html:30
+#: templates/home.html:24 templates/registration/login.html:27
 msgid "Sign in with Twitter"
-msgstr ""
+msgstr "Acceder con Twitter"
+
+#: templates/users/subscription_form.html:11
+msgid "Area"
+msgstr "Área"
 
 #: users/models.py:13
 msgid "Maximum distance from location in Km. (1 to 7)"
-msgstr ""
+msgstr "Distancia máxima desde la ubicación en Km. (de 1 a 7)"
 
-#: users/models.py:22
+#: users/models.py:23
 msgid "You can have 2 subscriptions at most."
-msgstr ""
+msgstr "Puedes tener a lo sumo 2 subscripciones"

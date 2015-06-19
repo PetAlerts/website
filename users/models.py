@@ -13,9 +13,10 @@ class AreaSubscription(ModelWithLocation):
         help_text=_('Maximum distance from location '
                     'in Km. (1 to 7)'),
         validators=[
-            MaxValueValidator(1),
-            MinValueValidator(7)
-        ])
+            MinValueValidator(1),
+            MaxValueValidator(7)
+        ],
+        default=4)
 
     def clean(self):
         if self.user.areasubscription_set.count() >= 2:
