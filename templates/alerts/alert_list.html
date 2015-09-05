@@ -29,7 +29,7 @@
                                 </ul>
 
                                 <p>{{alert.details}}</p>
-                                <a href="{% url 'alerts:detail' alert.pk %}" class="read-more">View More</a>
+                                <a href="{% url 'alerts:detail' alert.pk %}" class="read-more">{% trans "View More" %}</a>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                             </li>
                             {% for spe in species %}
                             <li {% if request.GET.species == spe.0 %}class="active"{% endif %}>
-                                <a href="{% url 'alerts:list' %}?species={{ spe.0 }}">{{ spe.1 }}</a>
+                                <a href="{% url 'alerts:list' %}?species={{ spe.0 }}">{% trans spe.1 %}</a>
                             </li>
                             {% endfor %}
                         </ul>
